@@ -39,8 +39,6 @@ export type AwsRumClientInit = {
     r: string;
     v: string;
     c?: PartialConfig;
-    /** Optional domain value to include in event metadata */
-    d?: string;
     u?: string;
 };
 
@@ -144,10 +142,6 @@ export class CommandQueue {
             awsRum.c.client = INSTALL_SCRIPT;
         } else {
             awsRum.c = { client: INSTALL_SCRIPT };
-        }
-
-        if (awsRum.d) {
-            awsRum.c.d = awsRum.d;
         }
 
         this.orchestration = new Orchestration(

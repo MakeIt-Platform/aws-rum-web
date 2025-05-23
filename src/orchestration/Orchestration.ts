@@ -169,8 +169,7 @@ export interface Config {
     userIdRetentionDays: number;
     alias?: string;
     headers?: HeaderBag;
-    /** Optional domain override used when building event metadata (config field `d`) */
-    d?: string;
+    domain?: string;
 }
 
 export interface PartialConfig

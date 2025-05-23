@@ -90,10 +90,10 @@ describe('EventCache tests', () => {
         });
     });
 
-    test('when d is provided then domain in meta data matches', async () => {
+    test('when domain is provided then domain in meta data matches', async () => {
         // Init
         const EVENT1_SCHEMA = 'com.amazon.rum.event1';
-        const eventCache = createEventCache({ d: 'custom.domain' });
+        const eventCache = createEventCache({ domain: 'custom.domain' });
 
         // Run
         eventCache.recordPageView('/console/home');
