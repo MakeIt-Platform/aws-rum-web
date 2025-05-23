@@ -429,4 +429,16 @@ describe('CommandQueue tests', () => {
             }
         ]);
     });
+
+    test('when d is provided then Orchestration is initialized with domain', async () => {
+        const commandQueue: CommandQueue = new CommandQueue();
+        await commandQueue.init({
+            ...initArgsWithAppName,
+            d: 'override.domain'
+        });
+        expect((Orchestration as any).mock.calls[0][3]).toEqual({
+            client: INSTALL_SCRIPT,
+            d: 'override.domain'
+        });
+    });
 });

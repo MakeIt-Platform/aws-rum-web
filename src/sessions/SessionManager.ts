@@ -281,7 +281,7 @@ export class SessionManager {
             deviceType: ua.device.type ? ua.device.type : DESKTOP_DEVICE_TYPE,
             // This client is used exclusively in web applications.
             platformType: WEB_PLATFORM_TYPE,
-            domain: window.location.hostname,
+            domain: this.config.d ? this.config.d : window.location.hostname,
             'aws:releaseId': this.config.releaseId
         };
     }

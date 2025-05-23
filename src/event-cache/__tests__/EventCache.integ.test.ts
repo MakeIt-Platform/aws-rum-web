@@ -90,6 +90,22 @@ describe('EventCache tests', () => {
         });
     });
 
+    test('when d is provided then domain in meta data matches', async () => {
+        // Init
+        const EVENT1_SCHEMA = 'com.amazon.rum.event1';
+        const eventCache = createEventCache({ d: 'custom.domain' });
+
+        // Run
+        eventCache.recordPageView('/console/home');
+        eventCache.recordEvent(EVENT1_SCHEMA, {});
+
+        // Assert
+        const events: RumEvent[] = eventCache.getEventBatch();
+        events.forEach((event) => {
+            expect(JSON.parse(event.metadata).domain).toEqual('custom.domain');
+        });
+    });
+
     test('when aws:releaseId exists then it is added to event metadata', async () => {
         // Init
         const EVENT1_SCHEMA = 'com.amazon.rum.event1';
