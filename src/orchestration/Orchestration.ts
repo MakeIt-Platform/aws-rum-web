@@ -169,6 +169,7 @@ export interface Config {
     userIdRetentionDays: number;
     alias?: string;
     headers?: HeaderBag;
+    domain?: string;
 }
 
 export interface PartialConfig
