@@ -723,6 +723,37 @@ describe('SessionManager tests', () => {
         expect(attributes['aws:userAgent']).toBeUndefined();
     });
 
+    test('when config.domain is set, attributes.domain uses the override', async () => {
+        // Init
+        const sessionManager = defaultSessionManager({
+            ...DEFAULT_CONFIG,
+            allowCookies: false,
+            domain: 'override.example.com'
+        });
+
+        // Run
+        sessionManager.getSession();
+        const attributes: Attributes = sessionManager.getAttributes();
+
+        // Assert
+        expect(attributes.domain).toEqual('override.example.com');
+    });
+
+    test('when config.domain is not set, attributes.domain falls back to window.location.hostname', async () => {
+        // Init
+        const sessionManager = defaultSessionManager({
+            ...DEFAULT_CONFIG,
+            allowCookies: false
+        });
+
+        // Run
+        sessionManager.getSession();
+        const attributes: Attributes = sessionManager.getAttributes();
+
+        // Assert
+        expect(attributes.domain).toEqual(window.location.hostname);
+    });
+
     test('userIdRetentionDays defaults to zero and the the nil UUID', async () => {
         // Init
         const sessionManager = defaultSessionManager(DEFAULT_CONFIG);

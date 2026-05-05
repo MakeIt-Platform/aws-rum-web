@@ -288,7 +288,7 @@ export class SessionManager {
             osVersion: ua?.osVersion,
             deviceType: ua?.deviceType ?? DESKTOP_DEVICE_TYPE,
             platformType: WEB_PLATFORM_TYPE,
-            domain: window.location.hostname,
+            domain: this.config.domain ?? window.location.hostname,
             'aws:releaseId': this.config.releaseId
         };
         // When userAgentData is not available (Firefox/Safari), include the

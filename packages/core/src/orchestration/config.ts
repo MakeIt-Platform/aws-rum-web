@@ -70,6 +70,13 @@ export interface Config {
     useBeacon: boolean;
     userIdRetentionDays: number;
     alias?: string;
+    /**
+     * Override the `domain` value reported in event metadata. When unset, falls
+     * back to `window.location.hostname` (current default behavior). Useful for
+     * multi-tenant apps where many subdomains belong to one app monitor and
+     * events should be attributed to a single canonical domain.
+     */
+    domain?: string;
     headers?: Record<string, string>;
     enableW3CTraceId: boolean;
 }
